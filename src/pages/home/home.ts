@@ -6,7 +6,8 @@ import { Keyboard } from '@ionic-native/keyboard';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [Keyboard]
 })
 export class HomePage {
 
