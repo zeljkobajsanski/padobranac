@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as Raphael from 'raphael';
 import * as $ from 'jquery';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @Component({
   selector: 'page-home',
@@ -14,7 +15,7 @@ export class HomePage {
   height;
   width;
   isRunning = false;
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private keyboard: Keyboard) {
 
   }
 
@@ -29,6 +30,7 @@ export class HomePage {
 
   start() {
     if (this.isRunning) return;
+    this.keyboard.show();
     this.image = this.paper.image("assets/imgs/parachute.png", this.width / 2 - 32, 0, 64, 64);
     let i = 0;
     const tries = 10;
@@ -39,6 +41,7 @@ export class HomePage {
       if (i == tries) {
         clearInterval(handler);
         this.isRunning = false;
+        this.keyboard.close();
       }
     }, 2000);
     this.isRunning = true;
